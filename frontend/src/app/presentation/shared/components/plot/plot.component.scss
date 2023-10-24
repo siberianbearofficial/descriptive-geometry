@@ -1,0 +1,11 @@
+.container {
+  width: 80vw;
+  height: 80vh;
+  overflow: scroll;
+  background-color: cornflowerblue;
+
+  .inner {
+    width: 2000px;
+    height: 2000px;
+  }
+}
