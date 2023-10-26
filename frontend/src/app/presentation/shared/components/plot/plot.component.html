@@ -1,7 +1,57 @@
 <div class="container">
-  <div class="inner">
-    <svg>
+  <div #inner class="inner">
+    <svg #plot>
+      <g class="axis-group">
+        <line class="axis-group__axis"
+              [attr.x1]="0"
+              [attr.x2]="inner.offsetWidth"
+              [attr.y1]="inner.offsetWidth / 2"
+              [attr.y2]="inner.offsetWidth / 2">
+        </line>
+        <line class="axis-group__mark"
+              [attr.x1]="inner.offsetWidth / 2"
+              [attr.x2]="inner.offsetWidth / 2"
+              [attr.y1]="inner.offsetWidth / 2 - 10"
+              [attr.y2]="inner.offsetWidth / 2 + 10">
+        </line>
+      </g>
 
+      <g *ngFor="let object of objects">
+        <g *ngFor="let projection of object.xy">
+          <circle class="xy" *ngIf="projection.type == 'point'"
+                  r="2"
+                  [attr.cx]="getScreenPoint(projection.data).x"
+                  [attr.cy]="getScreenPoint(projection.data).x">
+          </circle>
+          <line class="xy" *ngIf="projection.type == 'segment'"
+                [attr.x1]="getScreenSegment(projection.data).p1.x"
+                [attr.x2]="getScreenSegment(projection.data).p2.x"
+                [attr.y1]="getScreenSegment(projection.data).p1.y"
+                [attr.y2]="getScreenSegment(projection.data).p2.y">
+          </line>
+        </g>
+        <g *ngFor="let projection of object.xz">
+          <circle class="xy" *ngIf="projection.type == 'point'"
+                  r="2"
+                  [attr.cx]="getScreenPoint(projection.data).x"
+                  [attr.cy]="getScreenPoint(projection.data).x">
+          </circle>
+          <line class="xy" *ngIf="projection.type == 'segment'"
+                [attr.x1]="getScreenSegment(projection.data).p1.x"
+                [attr.x2]="getScreenSegment(projection.data).p2.x"
+                [attr.y1]="getScreenSegment(projection.data).p1.y"
+                [attr.y2]="getScreenSegment(projection.data).p2.y">
+          </line>
+        </g>
+        <g *ngFor="let projection of object.connections">
+          <line class="xy" *ngIf="projection.type == 'segment'"
+                [attr.x1]="getScreenSegment(projection.data).p1.x"
+                [attr.x2]="getScreenSegment(projection.data).p2.x"
+                [attr.y1]="getScreenSegment(projection.data).p1.y"
+                [attr.y2]="getScreenSegment(projection.data).p2.y">
+          </line>
+        </g>
+      </g>
     </svg>
   </div>
 </div>
