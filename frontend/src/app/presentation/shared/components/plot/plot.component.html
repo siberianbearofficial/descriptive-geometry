@@ -18,33 +18,33 @@
 
       <g *ngFor="let object of objects">
         <g *ngFor="let projection of object.xy">
-          <circle class="xy" *ngIf="projection.type == 'point'"
-                  r="2"
-                  [attr.cx]="getScreenPoint(projection.data).x"
-                  [attr.cy]="getScreenPoint(projection.data).x">
-          </circle>
           <line class="xy" *ngIf="projection.type == 'segment'"
                 [attr.x1]="getScreenSegment(projection.data).p1.x"
                 [attr.x2]="getScreenSegment(projection.data).p2.x"
                 [attr.y1]="getScreenSegment(projection.data).p1.y"
                 [attr.y2]="getScreenSegment(projection.data).p2.y">
           </line>
+          <circle class="xy point" *ngIf="projection.type == 'point'"
+                  r="2"
+                  [attr.cx]="getScreenPoint(projection.data).x"
+                  [attr.cy]="getScreenPoint(projection.data).y">
+          </circle>
         </g>
         <g *ngFor="let projection of object.xz">
-          <circle class="xy" *ngIf="projection.type == 'point'"
-                  r="2"
-                  [attr.cx]="getScreenPoint(projection.data).x"
-                  [attr.cy]="getScreenPoint(projection.data).x">
-          </circle>
-          <line class="xy" *ngIf="projection.type == 'segment'"
+          <line class="xz" *ngIf="projection.type == 'segment'"
                 [attr.x1]="getScreenSegment(projection.data).p1.x"
                 [attr.x2]="getScreenSegment(projection.data).p2.x"
                 [attr.y1]="getScreenSegment(projection.data).p1.y"
                 [attr.y2]="getScreenSegment(projection.data).p2.y">
           </line>
+          <circle class="xz point" *ngIf="projection.type == 'point'"
+                  r="2"
+                  [attr.cx]="getScreenPoint(projection.data).x"
+                  [attr.cy]="getScreenPoint(projection.data).y">
+          </circle>
         </g>
         <g *ngFor="let projection of object.connections">
-          <line class="xy" *ngIf="projection.type == 'segment'"
+          <line class="connection" *ngIf="projection.type == 'connection'"
                 [attr.x1]="getScreenSegment(projection.data).p1.x"
                 [attr.x2]="getScreenSegment(projection.data).p2.x"
                 [attr.y1]="getScreenSegment(projection.data).p1.y"

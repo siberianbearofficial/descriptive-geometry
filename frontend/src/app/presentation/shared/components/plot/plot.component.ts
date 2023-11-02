@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {ScreenSegment} from "../../../../core/domain/entities/screen/screen-segment";
 import {ScreenPoint} from "../../../../core/domain/entities/screen/screen-point";
 import {PlotObject} from "../../../../core/domain/entities/plot-object";
@@ -12,47 +12,44 @@ import {PlotObject} from "../../../../core/domain/entities/plot-object";
 export class PlotComponent {
   @ViewChild('plot') plotRef?: ElementRef;
 
-  public segment = {
-    p1: {
-      x: 10,
-      y: 10,
-      z: 20
-    },
-    p2: {
-      x: 100,
-      y: 20,
-      z: 50
-    }
-  };
+  @Input() objects?: PlotObject[];
 
-  public objects: Array<PlotObject> = [
-    {
-      xy: [
-        {
-          type: 'segment',
-          data: {
-            p1: {
-              x: 10,
-              y: 50
-            },
-            p2: {
-              x: 200,
-              y: 180
-            }
-          }
-        },
-        {
-          type: 'point',
-          data: {
-            x: 50,
-            y: 120
-          }
-        }
-      ],
-      xz: [],
-      connections: []
-    }
-  ]
+  // public objects: Array<PlotObject> = [
+  //   {
+  //     type: 'point',
+  //     xy: [
+  //       {
+  //         type: 'point',
+  //         data: {
+  //           x: 50,
+  //           y: 120
+  //         }
+  //       },
+  //       {
+  //         type: 'point',
+  //         data: {
+  //           x: 50,
+  //           y: 120
+  //         }
+  //       },
+  //       {
+  //         type: 'segment',
+  //         data: {
+  //           p1: {
+  //             x: 10,
+  //             y: 50
+  //           },
+  //           p2: {
+  //             x: 200,
+  //             y: 180
+  //           }
+  //         }
+  //       }
+  //     ],
+  //     xz: [],
+  //     connections: []
+  //   }
+  // ]
 
   public getScreenPoint(data: any): ScreenPoint {
     return data as ScreenPoint;
